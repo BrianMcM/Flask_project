@@ -33,7 +33,7 @@ let map;
           throw new Error('Network response was not ok');
       }
       const data = await response.json();
-
+      console.log(data[1].position_lat)
       const bikeStations = [];
       for (let key in data) {
           const position = [{ lat: data[key].position_lat, lng: data[key].position_lng}, data[key].name ];
