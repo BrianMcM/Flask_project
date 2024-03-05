@@ -38,3 +38,5 @@ def static_data():
     connection.close()
     print(json_result)
     return json_result
+
+static_data()
