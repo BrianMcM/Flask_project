@@ -1,11 +1,8 @@
 import mysql.connector
-
 import json
 import logging
 
-# Configure logging
-logging.basicConfig(level=logging.INFO)  # Set logging level to INFO
-print("Loading SQL Static Data Pull Package")
+
 def static_data():
     print("Starting SQL Static Data Pull Package")
     HOST = "dublinbikes.c1ywqa2sojjb.eu-west-1.rds.amazonaws.com"
@@ -39,5 +36,5 @@ def static_data():
     # Convert the list of dictionaries to JSON and print it
     json_result = json.dumps(result)
     connection.close()
-
+    print(json_result)
     return json_result
