@@ -18,7 +18,7 @@ connection = mysql.connector.connect(
     database=DATABASE
 )
 cursor = connection.cursor()
-query = "SELECT * FROM dublinbikes.weather"
+query = "SELECT * FROM dublinbikes.station;"
 cursor.execute(query)
 
 # Fetch all rows and convert to a list of dictionaries
@@ -30,7 +30,7 @@ for row in weather:
     for i, col in enumerate(cursor.description):
         d[col[0]] = row[i]
 
-result.append(d)
+    result.append(d)
 
 # Convert the list of dictionaries to JSON and print it
 json_result = json.dumps(result)
