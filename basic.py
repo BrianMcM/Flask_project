@@ -9,7 +9,7 @@ from flask import send_file
 import sql_puller
 
 #print(os.listdir('.'))
-print(sql_puller.static_data())
+#print(sql_puller.static_data())
 
 #load the relative path of website and json file
 site_root = os.path.realpath(os.path.dirname(__file__))
@@ -53,8 +53,9 @@ def map_generator(number):
 @app.route('/get_json_data')
 def get_json_data():
     try:
-        with open(json_path, 'r') as json_file:
-            data = json.load(json_file)
+        #with open(json_path, 'r') as json_file:
+        #    data = json.load(json_file)
+        data = sql_puller.static_data()
         return data
     except Exception as e:
         return str(e), 500

@@ -20,6 +20,7 @@ def static_data():
         database=DATABASE
     )
     cursor = connection.cursor()
+    print("Connection Made")
     query = "SELECT * FROM dublinbikes.station;"
     cursor.execute(query)
 
@@ -33,7 +34,7 @@ def static_data():
             d[col[0]] = row[i]
 
         result.append(d)
-
+    print("finished")
     # Convert the list of dictionaries to JSON and print it
     json_result = json.dumps(result)
     connection.close()
