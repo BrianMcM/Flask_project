@@ -5,8 +5,9 @@ import logging
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)  # Set logging level to INFO
-print("Starting SQL Static Data Pull")
+print("Loading SQL Static Data Pull Package")
 def static_data():
+    print("Starting SQL Static Data Pull Package")
     HOST = "dublinbikes.c1ywqa2sojjb.eu-west-1.rds.amazonaws.com"
     USER = "admin"
     PASSWORD = "boldlynavigatingnature"
