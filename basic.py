@@ -94,7 +94,8 @@ def get_json_data():
         #with open(json_path, 'r') as json_file:
         #    data = json.load(json_file)
         data = static_data()
-        return data
+        json_data = json.dumps(data)
+        return json_data
     except Exception as e:
         return str(e), 500
 
