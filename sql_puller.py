@@ -25,7 +25,7 @@ cursor.execute(query)
 weather = cursor.fetchall()
 result = []
 
-for row in weather.rows():
+for row in weather:
     d = {}
     for i, col in enumerate(cursor.description):
         d[col[0]] = row[i]
