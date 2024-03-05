@@ -95,7 +95,7 @@ def get_json_data():
         #    data = json.load(json_file)
         data = static_data()
         json_data = json.dumps(data)
-        return json_data
+        return data
     except Exception as e:
         return str(e), 500
 
