@@ -36,7 +36,7 @@ let map;
       console.log(data[1].position_lat)
       const bikeStations = [];
       for (let key in data) {
-          const position = [{ lat: data[key].position_lat, lng: data[key].position_lng}, data[key].name ];
+          const position = [{ lat: parseFloat(data[key].position_lat), lng: parseFloat(data[key].position_lng)}, data[key].name ];
           bikeStations.push(position);
       }
 
