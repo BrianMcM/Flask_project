@@ -6,10 +6,10 @@ from flask import url_for
 from flask import render_template
 import os
 from flask import send_file
-
+import sql_puller
 
 #print(os.listdir('.'))
-
+print(sql_puller.static_data())
 
 #load the relative path of website and json file
 site_root = os.path.realpath(os.path.dirname(__file__))
