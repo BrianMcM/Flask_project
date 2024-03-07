@@ -6,45 +6,44 @@ from flask import url_for
 from flask import render_template
 import os
 from flask import send_file
-import mysql.connector
-import json
+import sql_puller
 
 
-def static_data():
-    print("Starting SQL Static Data Pull Package")
-    HOST = "dublinbikes.c1ywqa2sojjb.eu-west-1.rds.amazonaws.com"
-    USER = "admin"
-    PASSWORD = "boldlynavigatingnature"
-    DATABASE = "dublinbikes"
+# def static_data():
+#     print("Starting SQL Static Data Pull Package")
+#     HOST = "dublinbikes.c1ywqa2sojjb.eu-west-1.rds.amazonaws.com"
+#     USER = "admin"
+#     PASSWORD = "boldlynavigatingnature"
+#     DATABASE = "dublinbikes"
 
 
-    connection = mysql.connector.connect(
-        host=HOST,
-        user=USER,
-        password=PASSWORD,
-        database=DATABASE
-    )
-    cursor = connection.cursor()
-    print("Connection Made")
-    query = "SELECT * FROM dublinbikes.station;"
-    cursor.execute(query)
+#     connection = mysql.connector.connect(
+#         host=HOST,
+#         user=USER,
+#         password=PASSWORD,
+#         database=DATABASE
+#     )
+#     cursor = connection.cursor()
+#     print("Connection Made")
+#     query = "SELECT * FROM dublinbikes.station;"
+#     cursor.execute(query)
 
-    # Fetch all rows and convert to a list of dictionaries
-    weather = cursor.fetchall()
-    result = []
+#     # Fetch all rows and convert to a list of dictionaries
+#     weather = cursor.fetchall()
+#     result = []
 
-    for row in weather:
-        d = {}
-        for i, col in enumerate(cursor.description):
-            d[col[0]] = row[i]
+#     for row in weather:
+#         d = {}
+#         for i, col in enumerate(cursor.description):
+#             d[col[0]] = row[i]
 
-        result.append(d)
-    print("finished")
-    # Convert the list of dictionaries to JSON and print it
-    json_result = json.dumps(result)
-    connection.close()
+#         result.append(d)
+#     print("finished")
+#     # Convert the list of dictionaries to JSON and print it
+#     json_result = json.dumps(result)
+#     connection.close()
 
-    return json_result
+#     return json_result
 
 #print(os.listdir('.'))
 #print(sql_puller.static_data())
@@ -88,16 +87,16 @@ def index_station(number):
 def map_generator(number):
     return render_template('map_1.html')
 
-@app.route('/get_json_data')
+@app.route('/get_static_data')
 def get_json_data():
     try:
-        #with open(json_path, 'r') as json_file:
-        #    data = json.load(json_file)
-        data = static_data()
-        json_data = json.dumps(data)
+        data = sql_puller.sql_data("static_data")
+        print(data)
+        #json_data = json.dumps(data)
         return data
     except Exception as e:
         return str(e), 500
 
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
+#sudo fuser -k 5000/tcp #command kills port 5000 in case website left running
