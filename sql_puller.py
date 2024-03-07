@@ -39,4 +39,5 @@ def sql_data(query_name):
     connection.close()
     print(json_result)
 
-sql_data()
+sql_data("dynamic_data")
+sql_data("static_data")
