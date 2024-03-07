@@ -1,8 +1,10 @@
 import mysql.connector
 import json
+sql_dict = {"dynamic_data":"call dublinbikes.update_availability();",\
+            "static_data":"call dublinbikes.static_data();"
+            }
 
-
-def static_data():
+def sql_data(query_name):
     print("Starting SQL Static Data Pull Package")
     HOST = "dublinbikes.c1ywqa2sojjb.eu-west-1.rds.amazonaws.com"
     USER = "admin"
@@ -18,7 +20,7 @@ def static_data():
     )
     cursor = connection.cursor()
     print("Connection Made")
-    query = "call dublinbikes.update_availability();"
+    query = sql_dict[query_name]
     cursor.execute(query)
 
     # Fetch all rows and convert to a list of dictionaries
@@ -37,4 +39,4 @@ def static_data():
     connection.close()
     print(json_result)
 
-static_data()
+sql_data()
