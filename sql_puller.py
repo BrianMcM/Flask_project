@@ -1,6 +1,5 @@
 import mysql.connector
 import json
-import logging
 
 
 def static_data():
@@ -19,7 +18,7 @@ def static_data():
     )
     cursor = connection.cursor()
     print("Connection Made")
-    query = "SELECT * FROM dublinbikes.station;"
+    query = "call dublinbikes.update_availability();"
     cursor.execute(query)
 
     # Fetch all rows and convert to a list of dictionaries
@@ -37,6 +36,5 @@ def static_data():
     json_result = json.dumps(result)
     connection.close()
     print(json_result)
-    return json_result
 
 static_data()
