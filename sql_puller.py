@@ -37,7 +37,4 @@ def sql_data(query_name):
     # Convert the list of dictionaries to JSON and print it
     json_result = json.dumps(result)
     connection.close()
-    print(json_result)
-
-sql_data("dynamic_data")
-sql_data("static_data")
+    return(json_result)

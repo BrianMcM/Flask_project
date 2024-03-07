@@ -1,34 +1,10 @@
 // Initialize and add the map
 let map;
-//  async function loadJSON(){
-//   fetch('/get_json_data')
-//       .then(response => {
-//           if (!response.ok) {
-//               throw new Error('Network response was not ok');
-//           }
-//           return response.json();
-//       })
-//       .then(data => {
-//           // Log the received JSON data
-//           // You can use the data received here
-//           const bikeStations = [];
-//           for (let key in data) {
-//             // code block to be executed
-//             const position = [{lat: data[key].latitude,lng: data[key].longitude},data[key].name];
-//             bikeStations.push(position);
-//           }
-//           //console.log(bikeStations);
-//           return bikeStations;
-          
-//       })
-//       .catch(error => {
-//           console.error('There was a problem with the fetch operation:', error);
-//       });
-//  }
 
+//async load JSON static data
  async function loadJSON() {
   try {
-      const response = await fetch('/get_json_data');
+      const response = await fetch('/get_static_data');
       if (!response.ok) {
           throw new Error('Network response was not ok');
       }
@@ -48,8 +24,6 @@ let map;
   }
 }
 
-
-
 async function initMap() {
   // The location of center of map (The Spire)
   const center_dublin = { lat: 53.35026632919465, lng: -6.260428242778603 }; 
@@ -68,21 +42,9 @@ async function initMap() {
   // info windows for markers
  // Create an info window to share between markers.
 
+ //call loadJSON function which is static data, then create the markers based on that data
 loadJSON()
     .then(bikeStations => {
-      
-        // You can use the bikeStations data here
-    
-
-//  const bikeStationss = [
-//   [ {lat: 53.350140, lng: -6.260180}, "O'Connell Street"],
-//   [ {lat: 53.343389, lng: -6.256586}, "Trinity College"],
-//   [{lat: 53.336005, lng: -6.259727}, "St. Stephen's Green"],
-//   [ {lat: 53.345214, lng: -6.265287},  "Temple Bar"],
-//   [{lat: 53.343805, lng: -6.266235}, "Dublin Castle"]
-// ];
-// const x = JSON.stringify(bikeStationss);
-// document.getElementById('table_js').innerHTML = x
 
 // Create an info window to share between markers.
 const infoWindow = new google.maps.InfoWindow();
