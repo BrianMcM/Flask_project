@@ -72,7 +72,7 @@ const infoBox = document.getElementById('info-box');
 
 // Create the markers.
 
-bikeStations.forEach(([position, title,number], i => {
+bikeStations.forEach(([position, title, number], i) => {
   const marker = new google.maps.Marker({
     position,
     map:map,
