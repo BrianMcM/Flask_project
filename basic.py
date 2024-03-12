@@ -54,7 +54,7 @@ def get_json_station(number):
     print("function station occupance begins with" ,number)
     print(f"call dublinbikes.static_data({number});")
     try:
-        data = sql_puller.sql_data(f"call dublinbikes.static_data({number});")
+        data = sql_puller.sql_data(f"call dublinbikes.station_data({number});")
         print("abbout to return data")
         return data
     except Exception as e:
