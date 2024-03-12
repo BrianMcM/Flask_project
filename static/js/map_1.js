@@ -27,6 +27,7 @@ let map;
 //async load JSON static data
 async function loadstationJSON(station_number) {
   try {
+    console.log('/get_station_occupancy/'+station_number)
     const response = await fetch('/get_station_occupancy/'+station_number);
     if (!response.ok) {
         throw new Error('Network response was not ok');

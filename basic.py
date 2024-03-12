@@ -51,10 +51,14 @@ def get_json_data():
     
 @app.route('/get_station_occupancy/<number>')
 def get_json_station(number):
+    print("function station occupance begins with" ,number)
+    print(f"call dublinbikes.static_data({number});")
     try:
         data = sql_puller.sql_data(f"call dublinbikes.static_data({number});")
+        print("abbout to return data")
         return data
     except Exception as e:
+        print()
         return str(e), 500
 
 #calls the database and returns the data for the dynamic data
