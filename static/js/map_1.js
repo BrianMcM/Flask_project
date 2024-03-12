@@ -12,7 +12,7 @@ let map;
       console.log("Test console log")
       const bikeStations = [];
       for (let key in data) {
-          const position = [{ lat: parseFloat(data[key].position_lat), lng: parseFloat(data[key].position_lng)}, data[key].name ];
+          const position = [{ lat: parseFloat(data[key].position_lat), lng: parseFloat(data[key].position_lng)}, data[key].name, data[key].number ];
           bikeStations.push(position);
       }
 
@@ -72,11 +72,11 @@ const infoBox = document.getElementById('info-box');
 
 // Create the markers.
 
-bikeStations.forEach(([position, title], i) => {
+bikeStations.forEach(([position, title], i, j) => {
   const marker = new google.maps.Marker({
     position,
     map:map,
-    title: `${i + 1}. ${title}`,
+    title: `${j}. ${title}`,
     optimized: false,
     icon: {
       url: "../static/images/bicycle-bike.svg",
@@ -91,6 +91,7 @@ bikeStations.forEach(([position, title], i) => {
     console.log('Data received:', station_data);
     infoWindow.close();
     infoWindow.setContent(
+    '<p>Station title: ' + marker.title + '</p>' +
     '<p>Station Number: ' + station_data[0].number + '</p>' +
     '<p>Station Name: ' + station_data[0].name + '</p>' +
     '<p>Bikes Available: ' + station_data[0].available_bikes + '</p>' +
