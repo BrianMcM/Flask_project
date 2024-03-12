@@ -44,7 +44,7 @@ async function loadstationJSON(station_number) {
 }
 
 async function initMap() {
-  loadstationJSON();
+  loadstationJSON(5);
   // The location of center of map (The Spire)
   const center_dublin = { lat: 53.35026632919465, lng: -6.260428242778603 }; 
   // Request needed libraries.
