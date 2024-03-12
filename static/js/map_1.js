@@ -86,15 +86,19 @@ bikeStations.forEach(([position, title], i) => {
 
   // Add a click listener for each marker, and set up the info window.
   marker.addListener("click", () => {
+    loadstationJSON(5)
+    .then(station_data =>{
+    console.log('Data received:', station_data);
     infoWindow.close();
-    infoWindow.setContent(marker.getTitle()+"asdasfasgs");
+    infoWindow.setContent("Station_Data:"+station_data[0].name+station_data[0].available_bikes);
     infoWindow.open(marker.getMap(), marker);
+  })
   });
 
   marker.addListener('click', () => {
     loadstationJSON(5)
     .then(station_data =>{
-    console.log('Data received:', station_data);
+    
     infoBox.innerHTML = '<h2>Marker Information</h2>' +
                         '<p>Marker Name: ' + marker.getTitle() + '</p>' +
                         //'<p>station_data: ' + station_data[0].name + station_data[0].available_bikes +'</p>' +
