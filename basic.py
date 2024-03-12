@@ -59,7 +59,7 @@ def get_json_station(number):
 
 #calls the database and returns the data for the dynamic data
 @app.route('/get_dynamic_data')
-def get_json_data():
+def get_dynamic_json_data():
     try:
         data = sql_puller.sql_data("call dublinbikes.update_availability();")
         return data
