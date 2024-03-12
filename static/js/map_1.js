@@ -76,7 +76,7 @@ bikeStations.forEach(([position, title], i, j) => {
   const marker = new google.maps.Marker({
     position,
     map:map,
-    title: `${j}. ${title}`,
+    title: `${j}`,
     optimized: false,
     icon: {
       url: "../static/images/bicycle-bike.svg",
