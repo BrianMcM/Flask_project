@@ -97,7 +97,7 @@ bikeStations.forEach(([position, title], i) => {
     console.log('Data received:', station_data);
     infoBox.innerHTML = '<h2>Marker Information</h2>' +
                         '<p>Marker Name: ' + marker.getTitle() + '</p>' +
-                        '<p>station_data: ' + station_data[0].name + station_data[0].available_bikes +'</p>' +
+                        //'<p>station_data: ' + station_data[0].name + station_data[0].available_bikes +'</p>' +
                         '<p>Location: Latitude ' + marker.getPosition().lat() + ', Longitude ' + marker.getPosition().lng() + '</p>';
   })
 
