@@ -90,7 +90,12 @@ bikeStations.forEach(([position, title], i) => {
     .then(station_data =>{
     console.log('Data received:', station_data);
     infoWindow.close();
-    infoWindow.setContent("Station_Data:"+station_data[0].name+station_data[0].available_bikes);
+    infoWindow.setContent(
+    '<p>Station Number: ' + station_data[0].number + '</p>' +
+    '<p>Station Name: ' + station_data[0].name + '</p>' +
+    '<p>Bikes Available: ' + station_data[0].available_bikes + '</p>' +
+    '<p>Bikes Stations: ' + station_data[0].available_bike_stands + '</p>'
+    );
     infoWindow.open(marker.getMap(), marker);
   })
   });
