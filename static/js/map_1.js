@@ -24,13 +24,32 @@ let map;
   }
 }
 
+//async load JSON static data
+async function loadstationJSON(station_number) {
+  try {
+    const response = await fetch('/get_station_occupancy/'+station_number);
+    if (!response.ok) {
+        throw new Error('Network response was not ok');
+    }
+    const data = await response.json();
+    console.log(data)
+    const bikeStations = [];
+
+    return bikeStations;
+  } catch (error) {
+    console.error('There was a problem with the fetch operation:', error);
+    // If an error occurs, return a default empty array
+    return [];
+  }
+}
+
 async function initMap() {
+  loadstationJSON();
   // The location of center of map (The Spire)
   const center_dublin = { lat: 53.35026632919465, lng: -6.260428242778603 }; 
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
-
 
   // The map, centered at The Spire
   map = new Map(document.getElementById("map"), {

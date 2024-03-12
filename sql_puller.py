@@ -20,7 +20,7 @@ def sql_data(query_name):
     )
     cursor = connection.cursor()
     print("Connection Made")
-    query = sql_dict[query_name]
+    query = query_name
     cursor.execute(query)
 
     # Fetch all rows and convert to a list of dictionaries

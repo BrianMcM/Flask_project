@@ -36,10 +36,23 @@ def map_generator(number):
 
 #calls the database and returns the data for the static data
 #sql_puller.sql_data takes a sting which calls the correct stored procedure from the sql database
+
+#sql_dict = {"dynamic_data":"call dublinbikes.update_availability();",\
+#            "static_data":"call dublinbikes.static_data();"
+#            }
+
 @app.route('/get_static_data')
 def get_json_data():
     try:
-        data = sql_puller.sql_data("static_data")
+        data = sql_puller.sql_data("call dublinbikes.static_data();")
+        return data
+    except Exception as e:
+        return str(e), 500
+    
+@app.route('/get_station_occupancy/<number>')
+def get_json_station(number):
+    try:
+        data = sql_puller.sql_data(f"call dublinbikes.static_data({number});")
         return data
     except Exception as e:
         return str(e), 500
@@ -48,7 +61,7 @@ def get_json_data():
 @app.route('/get_dynamic_data')
 def get_json_data():
     try:
-        data = sql_puller.sql_data("dynamic_data")
+        data = sql_puller.sql_data("call dublinbikes.update_availability();")
         return data
     except Exception as e:
         return str(e), 500
