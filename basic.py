@@ -1,102 +1,64 @@
-import json
-import pandas as pd
-from flask import Flask, jsonify
-from flask import request
-from flask import url_for
-from flask import render_template
-import os
-from flask import send_file
+#Import modules from flask and own python module "sql_puller"
+from flask import Flask, jsonify, request, url_for, render_template,send_file
 import sql_puller
 
-
-# def static_data():
-#     print("Starting SQL Static Data Pull Package")
-#     HOST = "dublinbikes.c1ywqa2sojjb.eu-west-1.rds.amazonaws.com"
-#     USER = "admin"
-#     PASSWORD = "boldlynavigatingnature"
-#     DATABASE = "dublinbikes"
-
-
-#     connection = mysql.connector.connect(
-#         host=HOST,
-#         user=USER,
-#         password=PASSWORD,
-#         database=DATABASE
-#     )
-#     cursor = connection.cursor()
-#     print("Connection Made")
-#     query = "SELECT * FROM dublinbikes.station;"
-#     cursor.execute(query)
-
-#     # Fetch all rows and convert to a list of dictionaries
-#     weather = cursor.fetchall()
-#     result = []
-
-#     for row in weather:
-#         d = {}
-#         for i, col in enumerate(cursor.description):
-#             d[col[0]] = row[i]
-
-#         result.append(d)
-#     print("finished")
-#     # Convert the list of dictionaries to JSON and print it
-#     json_result = json.dumps(result)
-#     connection.close()
-
-#     return json_result
-
-#print(os.listdir('.'))
-#print(sql_puller.static_data())
-
-#load the relative path of website and json file
-site_root = os.path.realpath(os.path.dirname(__file__))
-json_name = 'dublin.json'
-json_path = os.path.join(site_root, 'data', json_name)
-
-#load json as data_json
-
-#create a pandas dataframe of the json
-df = pd.read_json(json_path)
-
-#function which returns string from dataframe depending on which station you select(x)
-def func(df,x):
-    try:
-        return str(df[df['number'] == x].to_string(header=None,index=False))
-    except:
-        return "Error"
-    
-
-def to_json2(df,orient='split'):
-    df_json = df.to_json(orient = orient, force_ascii = False)
-    return json.loads(df_json)
-
-
-
+#create an istance of the Flask class called app
 app = Flask(__name__)
 
+####################################################
+############### Website pages/routes ###############
+####################################################
+
+#create a base route and an index route
 @app.route('/')
 @app.route('/index/')
 def index():
     return render_template('index.html')
 
+#This route allows you to pass variable into the python function below
+#i.e. http/ec2_xxx.xxx.xxx./index/5 will call the below root and pass 5 as the number argument
 @app.route('/index/<number>')
 def index_station(number):
     return render_template('index.html',data = func(df,int(number)), station_number = number)
 
+#Map is the main route as it brings you to the map page
 @app.route('/map/<number>')
 def map_generator(number):
     return render_template('map_1.html')
 
+####################################################
+############### Website pages/routes ###############
+####################################################
+
+################################################
+############### Data/JSON routes ###############
+################################################
+
+#calls the database and returns the data for the static data
+#sql_puller.sql_data takes a sting which calls the correct stored procedure from the sql database
 @app.route('/get_static_data')
 def get_json_data():
     try:
         data = sql_puller.sql_data("static_data")
-        print(data)
-        #json_data = json.dumps(data)
         return data
     except Exception as e:
         return str(e), 500
 
+#calls the database and returns the data for the dynamic data
+@app.route('/get_dynamic_data')
+def get_json_data():
+    try:
+        data = sql_puller.sql_data("dynamic_data")
+        return data
+    except Exception as e:
+        return str(e), 500
+    
+################################################
+############### Data/JSON routes ###############
+################################################
+    
+#if in correct environment run the website on port 5000
 if __name__ == "__main__":
     app.run(debug=True, host='0.0.0.0', port=5000)
+
 #sudo fuser -k 5000/tcp #command kills port 5000 in case website left running
