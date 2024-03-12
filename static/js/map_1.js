@@ -33,9 +33,9 @@ async function loadstationJSON(station_number) {
         throw new Error('Network response was not ok');
     }
     const data = await response.json();
-    console.log(data)
+    
     const station_data = data;
-
+    console.log(station_data);
     return station_data;
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
