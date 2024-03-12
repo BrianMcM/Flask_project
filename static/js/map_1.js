@@ -92,11 +92,16 @@ bikeStations.forEach(([position, title], i) => {
   });
 
   marker.addListener('click', () => {
-    const station_data = loadstationJSON(5)
+    loadstationJSON(5)
+    .then(station_data =>{
+    console.log('Data received:', station_data);
     infoBox.innerHTML = '<h2>Marker Information</h2>' +
                         '<p>Marker Name: ' + marker.getTitle() + '</p>' +
                         '<p>station_data: ' + station_data.name + station_data.available_bikes +'</p>' +
                         '<p>Location: Latitude ' + marker.getPosition().lat() + ', Longitude ' + marker.getPosition().lng() + '</p>';
+  })
+
+    
 });
 });
 
