@@ -34,9 +34,9 @@ async function loadstationJSON(station_number) {
     }
     const data = await response.json();
     console.log(data)
-    const bikeStations = [];
+    const station_data = data;
 
-    return bikeStations;
+    return station_data;
   } catch (error) {
     console.error('There was a problem with the fetch operation:', error);
     // If an error occurs, return a default empty array
@@ -45,7 +45,7 @@ async function loadstationJSON(station_number) {
 }
 
 async function initMap() {
-  loadstationJSON(5);
+  
   // The location of center of map (The Spire)
   const center_dublin = { lat: 53.35026632919465, lng: -6.260428242778603 }; 
   // Request needed libraries.
@@ -92,8 +92,10 @@ bikeStations.forEach(([position, title], i) => {
   });
 
   marker.addListener('click', () => {
+    const station_data = loadstationJSON(5)
     infoBox.innerHTML = '<h2>Marker Information</h2>' +
                         '<p>Marker Name: ' + marker.getTitle() + '</p>' +
+                        '<p>station_data: ' + station_data.name + station_data.available_bikes +'</p>' +
                         '<p>Location: Latitude ' + marker.getPosition().lat() + ', Longitude ' + marker.getPosition().lng() + '</p>';
 });
 });
