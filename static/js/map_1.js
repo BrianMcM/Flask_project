@@ -87,7 +87,7 @@ bikeStations.forEach(([position, title], i) => {
   // Add a click listener for each marker, and set up the info window.
   marker.addListener("click", () => {
     infoWindow.close();
-    infoWindow.setContent(marker.getTitle());
+    infoWindow.setContent(marker.getTitle()+"asdasfasgs");
     infoWindow.open(marker.getMap(), marker);
   });
 
