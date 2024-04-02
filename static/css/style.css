@@ -5,6 +5,7 @@
  #map {
    height: 100%;
    width: 70%;
+   float: left;
  }
 
  .info-container {
@@ -14,8 +15,8 @@
 }
 
 #infobox {
-  position: sticky;
-  display: flex;
+
+  float: left;
   height: 100%;
   width: 30%;
   background-color: #93cb52;
