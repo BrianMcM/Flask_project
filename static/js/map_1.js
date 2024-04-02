@@ -1,3 +1,6 @@
+import { MarkerClusterer } from "@googlemaps/markerclusterer";
+
+//const markerCluster = new MarkerClusterer({ markers, map });
 // Initialize and add the map
 let map;
 
@@ -109,7 +112,7 @@ bikeStations.forEach(([position, title, number], i) => {
     infoWindow.open(marker.map, marker);
   })
   });
-  //new MarkerClusterer({ markers, map });
+  new MarkerClusterer({ markers, map });
 //   marker.addListener('click', () => {
 //     loadstationJSON(5)
 //     .then(station_data =>{
