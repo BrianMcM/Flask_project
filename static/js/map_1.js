@@ -111,7 +111,7 @@ bikeStations.forEach(([position, title, number], i) => {
     infoWindow.open(marker.map, marker);
   })
   });
-  new MarkerClusterer({ markers, map });
+  new MarkerClusterer({ bikeStations, map });
 //   marker.addListener('click', () => {
 //     loadstationJSON(5)
 //     .then(station_data =>{
