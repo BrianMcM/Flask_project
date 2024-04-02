@@ -13,7 +13,10 @@
   height: 100%;
 }
 
-#info-box {
+#infobox {
+  position: sticky;
+  display: flex;
+  height: 100%;
   width: 30%;
   background-color: #93cb52;
   padding: 20px;
