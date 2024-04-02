@@ -51,7 +51,7 @@ async function initMap() {
   // Request needed libraries.
   //@ts-ignore
   const { Map, InfoWindow } = await google.maps.importLibrary("maps");
-  const { AdvancedMarkerElement, PinElement } = await google.maps.importLibrary("marker");
+  const { AdvancedMarkerElement} = await google.maps.importLibrary("marker");
 
   // The map, centered at The Spire
   map = new Map(document.getElementById("map"), {
@@ -71,14 +71,14 @@ loadJSON()
 const infoWindow = new InfoWindow;
 const infoBox = document.getElementById('info-box');
 
-const glyphImg = document.createElement("img");
+//const glyphImg = document.createElement("img");
 // Create the markers.
-glyphImg.src =
+//glyphImg.src =
   "../static/images/bicycle-bike.svg";
 
-const glyphSvgPinElement = new PinElement({scale: 0.001,
-  glyph: glyphImg,
-});
+//const glyphSvgPinElement = new PinElement({scale: 0.001,
+//  glyph: glyphImg,
+//});
 
 bikeStations.forEach(([position, title, number], i) => {
   const marker = new AdvancedMarkerElement({
