@@ -85,7 +85,7 @@ bikeStations.forEach(([position, title, number], i) => {
     position,
     map:map,
     title: `${number}`,
-    content: glyphSvgPinElement
+    content: glyphSvgPinElement.element
     //optimized: false,
     //icon: {
     //  url: "../static/images/bicycle-bike.svg",
