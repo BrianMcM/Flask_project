@@ -77,8 +77,8 @@ bikeStations.forEach(([position, title, number], i) => {
   const marker = new AdvancedMarkerElement({
     position,
     map:map,
-    title: `${number}`,
-    optimized: false//,
+    title: `${number}`//,
+    //optimized: false,
     //icon: {
     //  url: "../static/images/bicycle-bike.svg",
     //  scaledSize:new google.maps.Size(50,50)
