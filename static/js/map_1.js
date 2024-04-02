@@ -84,8 +84,8 @@ bikeStations.forEach(([position, title, number], i) => {
   const marker = new AdvancedMarkerElement({
     position,
     map:map,
-    title: `${number}`,
-    content: glyphSvgPinElement.element
+    title: `${number}`//,
+    //content: glyphSvgPinElement.element
     //optimized: false,
     //icon: {
     //  url: "../static/images/bicycle-bike.svg",
@@ -109,7 +109,7 @@ bikeStations.forEach(([position, title, number], i) => {
     infoWindow.open(marker.map, marker);
   })
   });
-
+  new MarkerClusterer({ markers, map });
 //   marker.addListener('click', () => {
 //     loadstationJSON(5)
 //     .then(station_data =>{
@@ -123,6 +123,7 @@ bikeStations.forEach(([position, title, number], i) => {
     
 // });
 });
+
 
 })
 .catch(error => {
