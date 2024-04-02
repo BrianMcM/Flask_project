@@ -71,14 +71,21 @@ loadJSON()
 const infoWindow = new InfoWindow;
 const infoBox = document.getElementById('info-box');
 
+const glyphImg = document.createElement("img");
 // Create the markers.
+glyphImg.src =
+  "../static/images/bicycle-bike.svg";
+
+const glyphSvgPinElement = new PinElement({
+  glyph: glyphImg,
+});
 
 bikeStations.forEach(([position, title, number], i) => {
   const marker = new AdvancedMarkerElement({
     position,
     map:map,
     title: `${number}`,
-    content: "../static/images/bicycle-bike.svg"
+    content: glyphSvgPinElement
     //optimized: false,
     //icon: {
     //  url: "../static/images/bicycle-bike.svg",
