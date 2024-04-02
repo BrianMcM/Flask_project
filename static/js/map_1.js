@@ -71,12 +71,12 @@ loadJSON()
 
 // Create an info window to share between markers.
 const infoWindow = new InfoWindow;
-const infoBox = document.getElementById('info-box');
+const infoBox = document.getElementById('infobox');
 
 //const glyphImg = document.createElement("img");
 // Create the markers.
 //glyphImg.src =
-  "../static/images/bicycle-bike.svg";
+//  "../static/images/bicycle-bike.svg";
 
 //const glyphSvgPinElement = new PinElement({scale: 0.001,
 //  glyph: glyphImg,
