@@ -1,5 +1,4 @@
-import { MarkerClusterer } from "@googlemaps/markerclusterer";
-
+import { MarkerClusterer } from "https://cdn.skypack.dev/@googlemaps/markerclusterer@2.3.1";
 //const markerCluster = new MarkerClusterer({ markers, map });
 // Initialize and add the map
 let map;
