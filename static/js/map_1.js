@@ -109,9 +109,10 @@ bikeStations.forEach(([position, title, number], i) => {
     '<p>Bikes Stations: ' + station_data[0].available_bike_stands + '</p>'
     );
     infoWindow.open(marker.map, marker);
+    infoBox.innerHTML = '<h2>Marker Information  this is the info displayed in the info box</h2>'
   })
   });
-  new MarkerClusterer({ bikeStations, map });
+ // new MarkerClusterer({ bikeStations, map });
 //   marker.addListener('click', () => {
 //     loadstationJSON(5)
 //     .then(station_data =>{
