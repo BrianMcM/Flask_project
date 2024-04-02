@@ -50,7 +50,7 @@ async function initMap() {
   const center_dublin = { lat: 53.35026632919465, lng: -6.260428242778603 }; 
   // Request needed libraries.
   //@ts-ignore
-  const { Map } = await google.maps.importLibrary("maps");
+  const { Map, InfoWindow } = await google.maps.importLibrary("maps");
   const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   // The map, centered at The Spire
@@ -68,7 +68,7 @@ loadJSON()
     .then(bikeStations => {
 
 // Create an info window to share between markers.
-const infoWindow = new google.maps.InfoWindow();
+const infoWindow = new InfoWindow;
 const infoBox = document.getElementById('info-box');
 
 // Create the markers.
@@ -98,22 +98,22 @@ bikeStations.forEach(([position, title, number], i) => {
     '<p>Bikes Available: ' + station_data[0].available_bikes + '</p>' +
     '<p>Bikes Stations: ' + station_data[0].available_bike_stands + '</p>'
     );
-    infoWindow.open(marker.getMap(), marker);
+    infoWindow.open(marker.map, marker);
   })
   });
 
-  marker.addListener('click', () => {
-    loadstationJSON(5)
-    .then(station_data =>{
+//   marker.addListener('click', () => {
+//     loadstationJSON(5)
+//     .then(station_data =>{
     
-    infoBox.innerHTML = '<h2>Marker Information</h2>' +
-                        '<p>Marker Name: ' + marker.getTitle() + '</p>' +
-                        //'<p>station_data: ' + station_data[0].name + station_data[0].available_bikes +'</p>' +
-                        '<p>Location: Latitude ' + marker.getPosition().lat() + ', Longitude ' + marker.getPosition().lng() + '</p>';
-  })
+//     infoBox.innerHTML = '<h2>Marker Information</h2>' +
+//                         '<p>Marker Name: ' + marker.title + '</p>' +
+//                         //'<p>station_data: ' + station_data[0].name + station_data[0].available_bikes +'</p>' +
+//                         '<p>Location: Latitude ' + marker.position.lat() + ', Longitude ' + marker.position().lng() + '</p>';
+//   })
 
     
-});
+// });
 });
 
 })
