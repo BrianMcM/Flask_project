@@ -76,6 +76,6 @@ def get_dynamic_json_data():
     
 #if in correct environment run the website on port 5000
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=True, host='0.0.0.0', port=5000)
 
 #sudo fuser -k 5000/tcp #command kills port 5000 in case website left running

@@ -51,6 +51,7 @@ async function initMap() {
   // Request needed libraries.
   //@ts-ignore
   const { Map } = await google.maps.importLibrary("maps");
+  const { AdvancedMarkerElement } = await google.maps.importLibrary("marker");
 
   // The map, centered at The Spire
   map = new Map(document.getElementById("map"), {
@@ -73,15 +74,15 @@ const infoBox = document.getElementById('info-box');
 // Create the markers.
 
 bikeStations.forEach(([position, title, number], i) => {
-  const marker = new google.maps.Marker({
+  const marker = new AdvancedMarkerElement({
     position,
     map:map,
     title: `${number}`,
-    optimized: false,
-    icon: {
-      url: "../static/images/bicycle-bike.svg",
-      scaledSize:new google.maps.Size(50,50)
-    }
+    optimized: false//,
+    //icon: {
+    //  url: "../static/images/bicycle-bike.svg",
+    //  scaledSize:new google.maps.Size(50,50)
+    //}
   });
 
   // Add a click listener for each marker, and set up the info window.
