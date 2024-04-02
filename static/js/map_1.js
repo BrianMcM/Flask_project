@@ -76,7 +76,7 @@ const glyphImg = document.createElement("img");
 glyphImg.src =
   "../static/images/bicycle-bike.svg";
 
-const glyphSvgPinElement = new PinElement({scale: 1.5,
+const glyphSvgPinElement = new PinElement({scale: 0.001,
   glyph: glyphImg,
 });
 
