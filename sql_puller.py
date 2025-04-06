@@ -6,7 +6,7 @@ sql_dict = {"dynamic_data":"call dublinbikes.update_availability();",\
 
 def sql_data(query_name):
     print("Starting SQL Static Data Pull Package")
-    HOST = "dublinbikes.c1ywqa2sojjb.eu-west-1.rds.amazonaws.com"
+    HOST = ""
     USER = "admin"
     PASSWORD = "boldlynavigatingnature"
     DATABASE = "dublinbikes"
